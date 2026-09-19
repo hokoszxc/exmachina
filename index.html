@@ -97,31 +97,40 @@
   .panel::after{ bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
 
   .table-scroll{ overflow-x:auto; }
-  table{ width:100%; border-collapse:collapse; font-size:13px; min-width:1200px; }
+  table{ width:100%; border-collapse:collapse; font-size:12px; table-layout:fixed; }
   thead th{
     position:sticky; top:0; background:var(--panel-2);
     text-align:left; font-family:'IBM Plex Mono'; font-weight:600;
-    font-size:10px; letter-spacing:0.03em; text-transform:uppercase; color:var(--muted);
-    padding:10px 12px; border-bottom:1px solid var(--line);
-    cursor:pointer; user-select:none; line-height:1.4; vertical-align:bottom;
+    font-size:9px; letter-spacing:0.02em; text-transform:uppercase; color:var(--muted);
+    padding:8px 6px; border-bottom:1px solid var(--line);
+    cursor:pointer; user-select:none; line-height:1.3; vertical-align:bottom;
+    overflow:hidden;
   }
-  thead th .th-main{ white-space:nowrap; display:flex; align-items:center; }
+  thead th .th-main{ white-space:normal; display:flex; align-items:center; flex-wrap:wrap; }
   thead th .th-lines{ display:flex; flex-direction:column; }
-  thead th .th-line{ white-space:normal; font-size:9.5px; color:var(--muted); font-weight:500; text-transform:none; }
-  thead th .th-pt{ display:block; font-size:13px; color:var(--amber); font-weight:700; letter-spacing:0.02em; margin-bottom:2px; }
+  thead th .th-line{ white-space:normal; font-size:8px; color:var(--muted); font-weight:500; text-transform:none; }
+  thead th .th-pt{ display:block; font-size:12px; color:var(--amber); font-weight:700; letter-spacing:0.02em; margin-bottom:2px; }
   thead th:hover{ color:var(--cyan); }
   thead th.sorted{ color:var(--amber); }
   thead th.sorted .th-pt{ color:var(--amber); }
-  thead th .arrow{ font-size:9px; margin-left:4px; opacity:0.7; }
+  thead th .arrow{ font-size:8px; margin-left:3px; opacity:0.7; }
   tbody td{
-    padding:11px 12px; border-bottom:1px solid var(--line); white-space:nowrap;
-    color:var(--text);
+    padding:9px 6px; border-bottom:1px solid var(--line); white-space:nowrap;
+    color:var(--text); overflow:hidden; text-overflow:ellipsis;
   }
   tbody tr{ transition:background 0.12s ease; }
   tbody tr:hover{ background:rgba(79,209,197,0.045); }
   tbody tr:nth-child(even){ background:rgba(255,255,255,0.012); }
 
-  .char-name{ font-family:'Rajdhani', sans-serif; font-weight:600; font-size:15px; letter-spacing:0.01em; }
+  th[data-col="0"], td:first-child{ width:15%; }
+  th[data-col="1"], th[data-col="2"]{ width:7.5%; }
+  th[data-col="3"]{ width:6.5%; }
+  th[data-col="4"], th[data-col="5"], th[data-col="6"], th[data-col="7"], th[data-col="8"]{ width:5.7%; }
+  th[data-col="9"], th[data-col="10"]{ width:6%; }
+  th[data-col="11"], th[data-col="12"], th[data-col="13"]{ width:6.3%; }
+  th[data-col="14"]{ width:7%; }
+
+  .char-name{ font-family:'Rajdhani', sans-serif; font-weight:600; font-size:13.5px; letter-spacing:0.01em; overflow:hidden; text-overflow:ellipsis; }
   .biosuit{ color:var(--muted); font-size:11.5px; letter-spacing:0.03em; }
   .num{ text-align:right; font-variant-numeric:tabular-nums; }
   .pct{ color:var(--cyan); }
@@ -135,6 +144,17 @@
   }
   .rank-badge.top{ background:rgba(255,182,39,0.16); box-shadow:0 0 10px rgba(255,182,39,0.2); }
   .rank-badge.cp-private{ border-color:#FFC7CE; color:#9C0006; background:rgba(255,199,206,0.18); }
+
+  .event-check{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:20px; height:20px; border-radius:3px;
+    color:var(--cyan); font-weight:700; font-size:13px;
+    background:rgba(79,209,197,0.12); border:1px solid rgba(79,209,197,0.35);
+  }
+  .event-check.off{
+    color:var(--muted); background:transparent; border:1px solid var(--line);
+    font-size:11px;
+  }
 
   .tier-val{
     display:inline-flex; align-items:center; justify-content:center;
@@ -198,40 +218,44 @@
 </div>
 
 <script>
-const DATA = {"headers": ["Character Name", "Weekly", "Cumulative", "Loot Weight %", "T1 Items / R. Passive / Active 3 / Unc. BP", "T2 Items / Active 4,5 / R. BP", "T3 Items / E. Passive / E. BP", "T4 Items / Weapon Skins", "Prime / E. Active", "Base Rank", "Loot Penalty", "Priority # (lower=first)", "Loot Priority", "CP Private"], "rows": [["Fuzz", 5390, 31080, 0.04586367237, 0, 0, 0, 0, 0, 5, 0, 5, 1, false], ["XERXES", 3590, 36575, 0.05137749645, 2, 0, 1, 0, 0, 3, 5, 8, 2, false], ["YUNGMAMAMO", 5030, 34085, 0.04921599916, 0, 2, 0, 0, 0, 4, 4, 8, 2, false], ["drKWAKKWAK", 4040, 34605, 0.04584688385, 0, 1, 0, 0, 0, 6, 2, 8, 2, false], ["TIMESHFTR", 4370, 30410, 0.04209983554, 0, 0, 0, 0, 0, 9, 0, 9, 5, false], ["Pepot", 5870, 42005, 0.05429860319, 0, 1, 2, 0, 0, 2, 8, 10, 6, false], ["Dephyle", 5030, 39070, 0.05499083698, 0, 1, 1, 0, 1, 1, 10, 11, 7, false], ["Shneibel", 3680, 17940, 0.04113247407, 0, 0, 0, 0, 0, 11, 0, 11, 7, false], ["JBreezy", 5690, 23070, 0.0424268529, 0, 0, 1, 0, 0, 8, 3, 11, 7, false], ["MrJe", 4310, 27730, 0.04492905883, 0, 1, 1, 0, 0, 7, 5, 12, 10, false], ["ShinZantetsu", 5870, 13160, 0.0385864083, 0, 0, 0, 0, 0, 13, 0, 13, 11, false], ["renSama", 3590, 21720, 0.0406812526, 0, 1, 0, 0, 0, 12, 2, 14, 12, false], ["FrozenFlame", 3590, 11580, 0.0316065935, 0, 0, 0, 0, 0, 14, 0, 14, 12, false], ["RunningSolo", 5510, 16320, 0.04202398051, 0, 1, 1, 0, 0, 10, 5, 15, 14, false], ["Tenari", 2590, 10080, 0.02782081164, 0, 0, 0, 0, 0, 16, 0, 16, 15, false], ["SHINZANMATO", 3590, 10640, 0.02593538865, 0, 0, 0, 0, 0, 17, 0, 17, 16, false], ["Drefanos", 3590, 19300, 0.03044396569, 0, 1, 0, 0, 0, 15, 2, 17, 16, false], ["Dritzz", 3040, 10340, 0.02305181272, 0, 0, 0, 0, 0, 20, 0, 20, 18, false], ["AshiokTavoc", 3060, 11290, 0.02354469531, 0, 1, 0, 0, 0, 19, 2, 21, 19, false], ["BroBroo", 3590, 11320, 0.02355748768, 1, 1, 0, 0, 0, 18, 3, 21, 19, false], ["Kyrin", 5960, 18030, 0.02304884063, 0, 0, 0, 0, 0, 21, 0, 21, 19, true], ["emprestela", 3590, 11580, 0.02301064932, 0, 0, 0, 0, 0, 22, 0, 22, 22, false], ["firballfrany", 1250, 16480, 0.0225189034, 1, 0, 0, 0, 0, 23, 1, 24, 23, false], ["ARTAXERXES", 3560, 9200, 0.02086591108, 0, 0, 0, 0, 0, 25, 0, 25, 24, false], ["khunkun", 3590, 11110, 0.02116378754, 0, 1, 0, 0, 0, 24, 2, 26, 25, false], ["Snelgrave", 4580, 11400, 0.01611929312, 0, 0, 0, 0, 0, 26, 0, 26, 25, true], ["DewBerry", 2120, 2120, 0.01568375685, 0, 0, 0, 0, 0, 27, 0, 27, 27, false], ["DadJokes", 3590, 11580, 0.01435033458, 0, 0, 0, 0, 0, 28, 0, 28, 28, true], ["ARNIEGOMIE", 3590, 10170, 0.01343565102, 0, 0, 0, 0, 0, 29, 0, 29, 29, true], ["FINALSPARK", 3590, 9580, 0.0130529111, 0, 0, 0, 0, 0, 30, 0, 30, 30, true], ["Eilsel", 3120, 8760, 0.0116257235, 0, 0, 0, 0, 0, 31, 0, 31, 31, true], ["holysmokess", 2770, 8760, 0.01095905246, 0, 0, 0, 0, 0, 32, 0, 32, 32, true], ["Ravenal", 3120, 3470, 0.008194038404, 0, 0, 0, 0, 0, 33, 0, 33, 33, true], ["WEYN", 2560, 2560, 0.006537037056, 0, 0, 0, 0, 0, 34, 0, 34, 34, true]]};
+const DATA = {"headers": ["Character Name", "Weekly", "Cumulative", "Loot Weight %", "T1 Items / R. Passive / Active 3 / Unc. BP", "T2 Items / Active 4,5 / R. BP", "T3 Items / E. Passive / E. BP", "T4 Items / Weapon Skins", "Prime / E. Active", "Base Rank", "Loot Penalty", "Guild Raid", "Guild Expedition", "Elysium Scramble", "Priority # (lower=first)", "Loot Priority", "CP Private"], "rows": [["Shneibel", 2620, 20560, 0.05094997237, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 6, 1, false], ["XERXES", 2470, 39045, 0.05441162315, 2, 0, 1, 0, 0, 3, 5, 0, 0, 0, 8, 2, false], ["JBreezy", 3850, 26920, 0.05127663269, 0, 0, 1, 0, 0, 5, 3, 0, 0, 0, 8, 2, false], ["renSama", 2470, 24190, 0.05071540214, 0, 1, 0, 0, 0, 7, 2, 0, 0, 0, 9, 4, false], ["MrJe", 2860, 30590, 0.05143493526, 0, 1, 1, 0, 0, 4, 5, 0, 0, 0, 9, 4, false], ["Pepot", 3775, 45780, 0.05533949679, 0, 1, 2, 0, 0, 2, 8, 0, 0, 0, 10, 6, false], ["Fuzz", 3190, 34270, 0.04835965972, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 6, false], ["Dephyle", 3850, 42920, 0.05796993251, 0, 1, 1, 0, 1, 1, 10, 0, 0, 0, 11, 8, false], ["ShinZantetsu", 3910, 17070, 0.04719651049, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 12, 9, false], ["YUNGMAMAMO", 2830, 36915, 0.05044346673, 0, 2, 0, 0, 0, 8, 4, 0, 0, 0, 12, 9, false], ["drKWAKKWAK", 2680, 37285, 0.04782137228, 0, 1, 0, 0, 0, 11, 2, 0, 0, 0, 13, 11, false], ["TIMESHFTR", 2760, 33170, 0.04584862805, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 13, 11, false], ["RunningSolo", 3070, 19390, 0.04928095305, 0, 1, 1, 0, 0, 9, 5, 0, 0, 0, 14, 13, false], ["FrozenFlame", 2470, 14050, 0.03867255723, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 15, 14, false], ["Drefanos", 2470, 21770, 0.0389675846, 0, 1, 0, 0, 0, 14, 2, 0, 0, 0, 16, 15, false], ["firballfrany", 1810, 18290, 0.03183615889, 1, 0, 0, 0, 0, 16, 1, 0, 0, 0, 17, 16, false], ["AshiokTavoc", 2470, 13760, 0.03068749169, 0, 1, 0, 0, 0, 17, 2, 0, 0, 0, 19, 17, false], ["Kyrin", 3670, 21700, 0.02835430468, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 19, 17, true], ["DewBerry", 2470, 4590, 0.02327461018, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 21, 19, false], ["BroBroo", 2470, 13790, 0.02996783199, 1, 1, 0, 0, 0, 18, 3, 0, 0, 0, 21, 19, false], ["khunkun", 2470, 13580, 0.02741710318, 0, 1, 0, 0, 0, 20, 2, 0, 0, 0, 22, 21, false], ["DadJokes", 2470, 14050, 0.01856756537, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 22, 21, true], ["Snelgrave", 2470, 13870, 0.01840022679, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 23, 23, true], ["FINALSPARK", 2400, 11980, 0.01648713877, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 24, 24, true], ["cRAULo", 0, 14960, 0.01390782302, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 25, 25, true], ["Ravenal", 2470, 5940, 0.01102803251, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 26, 26, true], ["WEYN", 1000, 3560, 0.00553875394, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 27, 27, true], ["xJoy", 940, 940, 0.00296930541, 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 28, 28, true], ["OooMoo0", 470, 470, 0.001484716391, 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 29, 29, true], ["MackSub", 440, 440, 0.00138995539, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 30, 30, true], ["Gnomorreia", 0, 0, 1.273725441e-07, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 31, 31, true], ["VVALLAX", 0, 0, 1.273725441e-07, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 31, 31, true]]};
 
 const COLS = [
   {key:0,  label:'Names',        lines:null, type:'name'},
   {key:1,  label:'Weekly',       lines:null, type:'int'},
   {key:2,  label:'Cumulative',   lines:null, type:'int'},
   {key:3,  label:'Loot Wt %',    lines:null, type:'pct'},
-  {key:4,  label:'T1 Items', lines:['R. Passive / Active 3','Unc. BP'], pt:1, type:'tier'},
-  {key:5,  label:'T2 Items', lines:['Active 4, 5','R. BP'], pt:2, type:'tier'},
-  {key:6,  label:'T3 Items', lines:['E. Passive Skill','E. BP'], pt:3, type:'tier'},
-  {key:7,  label:'T4 Epic Items', lines:null, pt:4, type:'tier'},
-  {key:8,  label:'Prime Items', lines:['E. Active Skill'], pt:5, type:'tier'},
+  {key:4,  label:'T1', lines:['R. Passive / Active 3','Unc. BP'], pt:1, type:'tier'},
+  {key:5,  label:'T2', lines:['Active 4, 5','R. BP'], pt:2, type:'tier'},
+  {key:6,  label:'T3', lines:['E. Passive Skill','E. BP'], pt:3, type:'tier'},
+  {key:7,  label:'T4', lines:null, pt:4, type:'tier'},
+  {key:8,  label:'Prime', lines:['E. Active Skill'], pt:5, type:'tier'},
   {key:9,  label:'Base Rank',    lines:null, type:'int'},
   {key:10, label:'Penalty',      lines:null, type:'penalty'},
-  {key:11, label:'Priority #',   lines:null, type:'rank'},
-  {key:13, label:'CPPrivate', lines:null, type:'hidden'},
+  {key:11, label:'Raid',      lines:['Guild Raid'], type:'check'},
+  {key:12, label:'Exped.',lines:['Guild Expedition'], type:'check'},
+  {key:13, label:'Scramble',lines:['Elysium Scramble'], type:'check'},
+  {key:14, label:'Priority #',   lines:null, type:'rank'},
+  {key:15, label:'CPPrivate', lines:null, type:'hidden'},
 ];
 
-let sortCol = 11, sortAsc = true;
-// Priority # column (index 11) is replaced with the Loot Priority values (original index 12),
+let sortCol = 14, sortAsc = true;
+// Priority # column (index 14) is replaced with the Loot Priority values (original index 15),
 // and the separate Loot Order column is dropped from the display.
 let rows = DATA.rows.map(r => {
-  const copy = r.slice(0, 12);
-  copy[11] = r[12];
+  const copy = r.slice(0, 16);
+  copy[14] = r[15];
+  copy[15] = r[16];
   return copy;
 });
-rows.sort((a,b) => a[11] - b[11]);
+rows.sort((a,b) => a[14] - b[14]);
 
 function render(){
   const thead = document.getElementById('table-head');
   thead.innerHTML = COLS.filter(c=>c.type!=='hidden').map(c => {
     const active = c.key === sortCol;
     const arrow = active ? (sortAsc ? '\u25b2' : '\u25bc') : '';
-    const align = ['int','pct','tier','penalty','rank'].includes(c.type) ? 'text-align:right' : '';
+    const align = ['int','pct','tier','penalty','rank','check'].includes(c.type) ? 'text-align:center' : '';
     let ptHtml = c.pt ? '<span class="th-pt">+' + c.pt + '</span>' : '';
     let linesHtml = '';
     if(c.lines){
@@ -242,7 +266,7 @@ function render(){
 
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = rows.map(r => {
-    const isPrivate = !!r[13];
+    const isPrivate = !!r[15];
     return '<tr>' + COLS.filter(c=>c.type!=='hidden').map(c => {
       const v = r[c.key];
       switch(c.type){
@@ -261,6 +285,10 @@ function render(){
         }
         case 'penalty':
           return '<td class="num ' + (Number(v)>0?'penalty':'penalty zero') + '">' + (v==null?'\u2014':v) + '</td>';
+        case 'check': {
+          const on = Number(v) === 1;
+          return '<td class="num">' + (on ? '<span class="event-check">&#10003;</span>' : '<span class="event-check off">&#8212;</span>') + '</td>';
+        }
         case 'rank': {
           const n = Number(v);
           const cls = (n<=3?'top ':'') + (isPrivate?'cp-private':'');
