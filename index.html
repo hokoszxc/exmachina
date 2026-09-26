@@ -127,8 +127,8 @@
   th[data-col="3"]{ width:6.5%; }
   th[data-col="4"], th[data-col="5"], th[data-col="6"], th[data-col="7"], th[data-col="8"]{ width:5.7%; }
   th[data-col="9"], th[data-col="10"]{ width:6%; }
-  th[data-col="11"], th[data-col="12"], th[data-col="13"]{ width:6.3%; }
-  th[data-col="14"]{ width:7%; }
+  th[data-col="11"], th[data-col="12"]{ width:7%; }
+  th[data-col="13"]{ width:7.5%; }
 
   .char-name{ font-family:'Rajdhani', sans-serif; font-weight:600; font-size:13.5px; letter-spacing:0.01em; overflow:hidden; text-overflow:ellipsis; }
   .biosuit{ color:var(--muted); font-size:11.5px; letter-spacing:0.03em; }
@@ -218,37 +218,36 @@
 </div>
 
 <script>
-const DATA = {"headers": ["Character Name", "Weekly", "Cumulative", "Loot Weight %", "T1 Items / R. Passive / Active 3 / Unc. BP", "T2 Items / Active 4,5 / R. BP", "T3 Items / E. Passive / E. BP", "T4 Items / Weapon Skins", "Prime / E. Active", "Base Rank", "Loot Penalty", "Guild Raid", "Guild Expedition", "Elysium Scramble", "Priority # (lower=first)", "Loot Priority", "CP Private"], "rows": [["Shneibel", 2620, 20560, 0.05094997237, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 1, 1, false], ["XERXES", 2470, 39045, 0.05441162315, 2, 0, 1, 0, 0, 3, 5, 0, 0, 0, 2, 2, false], ["JBreezy", 3850, 26920, 0.05127663269, 0, 0, 1, 0, 0, 5, 3, 0, 0, 0, 3, 3, false], ["MrJe", 2860, 30590, 0.05143493526, 0, 1, 1, 0, 0, 4, 5, 0, 0, 0, 4, 4, false], ["renSama", 2470, 24190, 0.05071540214, 0, 1, 0, 0, 0, 7, 2, 0, 0, 0, 5, 5, false], ["Pepot", 3775, 45780, 0.05533949679, 0, 1, 2, 0, 0, 2, 8, 0, 0, 0, 6, 6, false], ["Fuzz", 3190, 34270, 0.04835965972, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 7, 7, false], ["Dephyle", 3850, 42920, 0.05796993251, 0, 1, 1, 0, 1, 1, 10, 0, 0, 0, 8, 8, false], ["YUNGMAMAMO", 2830, 36915, 0.05044346673, 0, 2, 0, 0, 0, 8, 4, 0, 0, 0, 9, 9, false], ["ShinZantetsu", 3910, 17070, 0.04719651049, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 10, 10, false], ["drKWAKKWAK", 2680, 37285, 0.04782137228, 0, 1, 0, 0, 0, 11, 2, 0, 0, 0, 11, 11, false], ["TIMESHFTR", 2760, 33170, 0.04584862805, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 12, 12, false], ["RunningSolo", 3070, 19390, 0.04928095305, 0, 1, 1, 0, 0, 9, 5, 0, 0, 0, 13, 13, false], ["FrozenFlame", 2470, 14050, 0.03867255723, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 14, 14, false], ["Drefanos", 2470, 21770, 0.0389675846, 0, 1, 0, 0, 0, 14, 2, 0, 0, 0, 15, 15, false], ["firballfrany", 1810, 18290, 0.03183615889, 1, 0, 0, 0, 0, 16, 1, 0, 0, 0, 16, 16, false], ["AshiokTavoc", 2470, 13760, 0.03068749169, 0, 1, 0, 0, 0, 17, 2, 0, 0, 0, 17, 17, false], ["Kyrin", 3670, 21700, 0.02835430468, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 18, 18, true], ["BroBroo", 2470, 13790, 0.02996783199, 1, 1, 0, 0, 0, 18, 3, 0, 0, 0, 19, 19, false], ["DewBerry", 2470, 4590, 0.02327461018, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 20, 20, false], ["khunkun", 2470, 13580, 0.02741710318, 0, 1, 0, 0, 0, 20, 2, 0, 0, 0, 21, 21, false], ["DadJokes", 2470, 14050, 0.01856756537, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 22, 22, true], ["Snelgrave", 2470, 13870, 0.01840022679, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 23, 23, true], ["FINALSPARK", 2400, 11980, 0.01648713877, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 24, 24, true], ["cRAULo", 0, 14960, 0.01390782302, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 25, 25, true], ["Ravenal", 2470, 5940, 0.01102803251, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 26, 26, true], ["WEYN", 1000, 3560, 0.00553875394, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 27, 27, true], ["xJoy", 940, 940, 0.00296930541, 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 28, 28, true], ["OooMoo0", 470, 470, 0.001484716391, 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 29, 29, true], ["MackSub", 440, 440, 0.00138995539, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 30, 30, true], ["Gnomorreia", 0, 0, 1.273725441e-07, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 31, 31, true], ["VVALLAX", 0, 0, 1.273725441e-07, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 32, 32, true]]};
+const DATA = {"headers": ["Character Name", "Weekly", "Cumulative", "Loot Weight %", "T1 Epic Items/Mats | Uncommon Blue Print | Weapon Skins", "T2 Epic Items/Mats | Rare Blue Print", "T3 Epic Items/Mats | Epic Blue Print", "T4 Epic Items", "Legendary Fragments", "Base Rank", "Loot Penalty", "Guild Raid", "Guild Expedition", "Priority # (lower=first)", "Loot Priority", "CP Private"], "rows": [["Kyrin", 3670, 21700, 0.05142758325, 0, 0, 0, 0, 0, 6, 0, 1, 1, 1, 1, false], ["Shneibel", 2470, 20560, 0.05133998128, 1, 0, 0, 0, 0, 7, 1, 1, 1, 2, 2, false], ["Dephyle", 3850, 42920, 0.05707760624, 0, 1, 2, 0, 0, 1, 8, 1, 1, 3, 3, false], ["XERXES", 2470, 39045, 0.05554282503, 2, 0, 1, 0, 0, 2, 5, 0, 0, 4, 4, false], ["Pepot", 3775, 45780, 0.05433213747, 0, 1, 2, 0, 0, 3, 8, 1, 1, 5, 5, false], ["renSama", 2470, 24190, 0.05149505822, 0, 1, 0, 1, 0, 5, 6, 1, 1, 6, 6, false], ["YUNGMAMAMO", 2830, 36915, 0.05059471685, 0, 2, 0, 0, 0, 8, 4, 1, 1, 7, 7, false], ["MrJe", 2860, 30590, 0.05162659377, 0, 1, 1, 1, 0, 4, 9, 1, 1, 8, 8, false], ["drKWAKKWAK", 2680, 37285, 0.04798618878, 0, 1, 0, 0, 0, 11, 2, 1, 1, 9, 9, false], ["TIMESHFTR", 2760, 33170, 0.04569495417, 0, 0, 0, 0, 0, 13, 0, 1, 1, 10, 10, false], ["JBreezy", 3850, 26920, 0.04976632878, 0, 0, 1, 0, 0, 9, 3, 0, 0, 11, 11, false], ["ShinZantetsu", 3910, 17070, 0.04510657378, 0, 0, 0, 0, 0, 14, 0, 1, 1, 12, 12, false], ["RunningSolo", 3070, 19390, 0.04884460572, 0, 1, 1, 0, 0, 10, 5, 1, 1, 13, 13, false], ["Fuzz", 3190, 34270, 0.04770493592, 0, 0, 1, 0, 0, 12, 3, 1, 1, 14, 14, false], ["Drefanos", 2470, 21770, 0.03863187192, 0, 1, 0, 0, 0, 15, 2, 1, 1, 15, 15, false], ["FrozenFlame", 2470, 14050, 0.03821161032, 0, 1, 0, 0, 0, 16, 2, 1, 1, 16, 16, false], ["firballfrany", 1810, 18290, 0.03192274126, 1, 0, 0, 0, 0, 17, 1, 0, 0, 17, 17, false], ["AshiokTavoc", 2470, 13760, 0.0294856201, 0, 1, 0, 0, 0, 18, 2, 1, 1, 18, 18, false], ["DewBerry", 2470, 4590, 0.02127192278, 0, 0, 0, 0, 0, 21, 0, 1, 0, 19, 19, false], ["khunkun", 2470, 13580, 0.02591099897, 0, 1, 0, 0, 0, 20, 2, 1, 0, 20, 20, false], ["Snelgrave", 2470, 13870, 0.01606529539, 0, 0, 0, 0, 0, 23, 0, 1, 1, 21, 21, true], ["BroBroo", 2470, 13790, 0.02869989662, 1, 2, 0, 0, 0, 19, 5, 1, 1, 22, 22, false], ["DadJokes", 2470, 14050, 0.01625036883, 0, 1, 0, 0, 0, 22, 2, 1, 1, 23, 23, true], ["FINALSPARK", 2400, 11980, 0.01407089251, 0, 0, 0, 0, 0, 25, 0, 1, 1, 24, 24, true], ["cRAULo", 0, 14960, 0.01538179872, 0, 0, 0, 0, 0, 24, 0, 0, 0, 25, 25, true], ["Ravenal", 2470, 5940, 0.007911781983, 0, 0, 0, 0, 0, 26, 0, 0, 0, 26, 26, true], ["WEYN", 1000, 3560, 0.004390933699, 0, 0, 0, 0, 0, 27, 0, 0, 0, 27, 27, true], ["xJoy", 940, 940, 0.001653259712, 0, 0, 0, 0, 0, 28, 0, 0, 0, 28, 28, true], ["OooMoo0", 470, 470, 0.0008266994224, 0, 0, 0, 0, 0, 29, 0, 0, 0, 29, 29, true], ["Gnomorreia", 0, 0, 1.391325707e-07, 0, 0, 0, 0, 0, 31, 0, 1, 1, 30, 30, true], ["MackSub", 440, 440, 0.0007739402549, 0, 0, 0, 0, 0, 30, 0, 0, 0, 31, 31, true], ["VVALLAX", 0, 0, 1.391325707e-07, 0, 0, 0, 0, 0, 31, 0, 0, 0, 32, 32, true]]};
 
 const COLS = [
   {key:0,  label:'Names',        lines:null, type:'name'},
   {key:1,  label:'Weekly',       lines:null, type:'int'},
   {key:2,  label:'Cumulative',   lines:null, type:'int'},
   {key:3,  label:'Loot Wt %',    lines:null, type:'pct'},
-  {key:4,  label:'T1', lines:['R. Passive / Active 3','Unc. BP'], pt:1, type:'tier'},
-  {key:5,  label:'T2', lines:['Active 4, 5','R. BP'], pt:2, type:'tier'},
-  {key:6,  label:'T3', lines:['E. Passive Skill','E. BP'], pt:3, type:'tier'},
-  {key:7,  label:'T4', lines:null, pt:4, type:'tier'},
-  {key:8,  label:'Prime', lines:['E. Active Skill'], pt:5, type:'tier'},
+  {key:4,  label:'T1', lines:['Epic Items/Mats','Unc. BP · Wpn Skins'], pt:1, type:'tier'},
+  {key:5,  label:'T2', lines:['Epic Items/Mats','Rare BP'], pt:2, type:'tier'},
+  {key:6,  label:'T3', lines:['Epic Items/Mats','Epic BP'], pt:3, type:'tier'},
+  {key:7,  label:'T4', lines:['Epic Items'], pt:4, type:'tier'},
+  {key:8,  label:'Legendary', lines:['Fragments'], pt:5, type:'tier'},
   {key:9,  label:'Base Rank',    lines:null, type:'int'},
   {key:10, label:'Penalty',      lines:null, type:'penalty'},
   {key:11, label:'Raid',      lines:['Guild Raid'], type:'check'},
   {key:12, label:'Exped.',lines:['Guild Expedition'], type:'check'},
-  {key:13, label:'Scramble',lines:['Elysium Scramble'], type:'check'},
-  {key:14, label:'Priority #',   lines:null, type:'rank'},
-  {key:15, label:'CPPrivate', lines:null, type:'hidden'},
+  {key:13, label:'Priority #',   lines:null, type:'rank'},
+  {key:14, label:'CPPrivate', lines:null, type:'hidden'},
 ];
 
-let sortCol = 14, sortAsc = true;
-// Priority # column (index 14) is replaced with the Loot Priority values (original index 15),
+let sortCol = 13, sortAsc = true;
+// Priority # column (index 13) is replaced with the Loot Priority values (original index 14),
 // and the separate Loot Order column is dropped from the display.
 let rows = DATA.rows.map(r => {
-  const copy = r.slice(0, 16);
+  const copy = r.slice(0, 15);
+  copy[13] = r[14];
   copy[14] = r[15];
-  copy[15] = r[16];
   return copy;
 });
-rows.sort((a,b) => a[14] - b[14]);
+rows.sort((a,b) => a[13] - b[13]);
 
 function render(){
   const thead = document.getElementById('table-head');
@@ -266,7 +265,7 @@ function render(){
 
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = rows.map(r => {
-    const isPrivate = !!r[15];
+    const isPrivate = !!r[14];
     return '<tr>' + COLS.filter(c=>c.type!=='hidden').map(c => {
       const v = r[c.key];
       switch(c.type){
